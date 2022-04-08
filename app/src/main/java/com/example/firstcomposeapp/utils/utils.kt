@@ -1,6 +1,7 @@
 package com.example.firstcomposeapp.utils
 
 import android.util.Log
+import androidx.compose.runtime.Composable
 import retrofit2.Response
 import java.lang.Exception
 

@@ -22,8 +22,8 @@ class MovieRepositoryImpl(
         flow {
             responseTryCatch(
                 { movieService.getMovies() },
-                { _movieResponse.value = it },
-                { _movieResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 }
