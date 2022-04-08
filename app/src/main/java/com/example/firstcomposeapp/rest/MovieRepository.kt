@@ -11,25 +11,16 @@ class MovieRepositoryImpl(
     private val movieService: MovieService
 ) : MovieRepository {
 
-    private val _movieResponse : MutableStateFlow<MovieState> =
-        MutableStateFlow(MovieState.LOADING)
-
-    override val movieResponse: StateFlow<MovieState>
-        get() = _movieResponse
-
-
     override fun getMovies(): Flow<MovieState> =
         flow {
             responseTryCatch(
                 { movieService.getMovies() },
-                { _movieResponse.value = it },
-                { _movieResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 }
 
 interface MovieRepository {
     fun getMovies() : Flow<MovieState>
-
-    val movieResponse : StateFlow<MovieState>
 }
